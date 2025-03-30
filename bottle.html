@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捞起的漂流瓶</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDF5C9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #FEFAF6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #BBBEF3;
+            font-size: 1.2em; /* 缩小字体大小 */
+            margin: 0;
+        }
+
+        #messageDisplay {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px; /* 减小内边距 */
+            background-color: #BBBEF3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px; /* 减小字体大小 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+            margin-top: 20px; /* 添加顶部外边距 */
+        }
+
+        button:hover {
+            background-color: #7B80E0;
+        }
+
+        button:focus {
+            outline: none; /* 去掉默认的焦点边框 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>远方来信~</h1>
+        </div>
+        <div id="messageDisplay"></div>
+        <button onclick="window.location.href='index.html'">返回</button>
+    </div>
+    <script>
+        // 从 URL 参数中获取昵称和消息
+        const urlParams = new URLSearchParams(window.location.search);
+        const nickname = urlParams.get('nickname');
+        const message = urlParams.get('message');
+
+        if (nickname && message) {
+            document.getElementById('messageDisplay').innerText = `${decodeURIComponent(nickname)}: ${decodeURIComponent(message)}`;
+        } else {
+            document.getElementById('messageDisplay').innerText = '还没有人倾诉欸(´。＿。｀)';
+        }
+    </script>
+</body>
+</html>

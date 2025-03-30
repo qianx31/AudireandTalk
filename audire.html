@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漂流瓶</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDF5C9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #FEFAF6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            position: relative; /* 设置为相对定位，以便绝对定位的按钮可以相对于 .container 定位 */
+        }
+
+        h1 {
+            color: #BBBEF3;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #BBBEF3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px; /* 添加外边距 */
+        }
+
+        button:hover {
+            background-color: #7B80E0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* 设置按钮之间的间隔 */
+        }
+
+        .return-button {
+            position: absolute;
+            bottom: 20px; /* 距离 .container 底部的距离 */
+            right: 20px; /* 距离 .container 右侧的距离 */
+        }
+    </style>
+    <div class="container">
+        <h1>Audire&nbsp;</h1>
+        <form id="bottleForm">
+            <input type="text" id="nickname" name="nickname" placeholder="给自己想个代号吧(●'◡'●)">
+            <textarea id="message" name="message" placeholder="写下你的困惑..."></textarea>
+            <div class="button-container">
+                <button type="submit">扔出漂流瓶</button>
+                <button onclick="getRandomBottle()">捞起一个漂流瓶</button>
+            </div>
+        </form>
+        <button class="return-button" onclick="goToIndex()">返回主页</button>
+    </div>
+    <script>
+        let bottles = [];
+
+        document.getElementById('bottleForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nickname = document.getElementById('nickname').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (nickname === '') {
+                alert('别忘了代号！');
+                return;
+            }
+            if (message === '') {
+                alert('写点什么吧！');
+                return;
+            }
+            bottles.push({ nickname, message });
+            alert('漂流瓶扔出去啦ヾ(≧▽≦*)o');
+            document.getElementById('message').value = '';
+            document.getElementById('nickname').value = '';
+        });
+
+        function getRandomBottle() {
+            if (bottles.length === 0) {
+                alert('还没有人倾诉欸(´。＿。｀)');
+                alert('看看别的吧！');
+                window.location.href = 'index.html'; // 跳转回 index.html
+                return; // 确保函数在数组为空时直接返回
+            }
+            const randomIndex = Math.floor(Math.random() * bottles.length);
+            const { nickname, message } = bottles[randomIndex];
+            // 跳转到 bottle.html 并传递昵称和消息
+            window.location.href = `bottle.html?nickname=${encodeURIComponent(nickname)}&message=${encodeURIComponent(message)}`;
+        }
+
+        function goToIndex() {
+            window.location.href = 'index.html'; // 跳转回 index.html
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audire-每日一句</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDF5C9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative; /* 设置为相对定位，以便绝对定位的元素可以相对于页面定位 */
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            color: #000000;
+            margin-bottom: 50px;
+        }
+
+        .container {
+            background-color: #FEFAF6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            position: relative; /* 设置为相对定位，以便绝对定位的按钮可以相对于 .container 定位 */
+        }
+
+        h1 {
+            color: #BBBEF3;
+            margin-bottom: 20px;
+        }
+
+        #quoteDisplay {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #BBBEF3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #7B80E0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-info {
+            position: absolute;
+            bottom: 10px; /* 距离页面底部的距离 */
+            right: 10px; /* 距离页面右侧的距离 */
+            font-size: 0.8em;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-title"><strong>Audire</strong>&nbsp;</div>
+    <div class="container">
+        <h1>每日一句&nbsp;</h1>
+        <div id="quoteDisplay"></div>
+        <div class="button-container">
+            <button onclick="getRandomQuote()">刷新</button>
+            <button onclick="window.location.href='audire.html'">去漂流瓶</button>
+        </div>
+    </div>
+    <div class="contact-info">有任何问题请联系我们</div>
+<script>
+        const quotes = [
+            "生活就像海洋，只有意志坚强的人，才能到达彼岸。 —— 马克思",
+            "人生的价值，并不是用时间，而是用深度去衡量的。 —— 列夫·托尔斯泰",
+            "不要等待机会，而要创造机会。 —— 乔治·伯纳德·肖",
+            "人生最大的快乐是致力于一个自己认为伟大的目标。 —— 萧伯纳",
+            "生活有度，人生添寿。",
+            "人生最大的快乐是致力于一个自己认为伟大的目标。 —— 萧伯纳",
+            "人生的价值，并不是用时间，而是用深度去衡量的。 —— 列夫·托尔斯泰",
+            "不要等待机会，而要创造机会。 —— 乔治·伯纳德·肖",
+            "生活就像海洋，只有意志坚强的人，才能到达彼岸。 —— 马克思"
+        ];
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            document.getElementById('quoteDisplay').innerText = randomQuote;
+        }
+
+        // 初始化页面时加载一条随机名句
+        getRandomQuote();
+    </script>
+</body>
+</html>
